@@ -22,10 +22,10 @@ void Wyslij_do_LCD(unsigned char bajt)
 
     E = 1;
   	/*wyslanie 4 najstarszych bitow danych*/
-	if(bajt & 0x80)	DB7	= 1; else DB7 = 0;
-	if(bajt & 0x40)	DB6	= 1; else DB6 = 0;
-	if(bajt & 0x20)	DB5	= 1; else DB5 = 0;
-	if(bajt & 0x10)	DB4	= 1; else DB4 = 0;
+	if(bajt & 0x80)	DB7 = 1; else DB7 = 0;
+	if(bajt & 0x40)	DB6 = 1; else DB6 = 0;
+	if(bajt & 0x20)	DB5 = 1; else DB5 = 0;
+	if(bajt & 0x10)	DB4 = 1; else DB4 = 0;
 	__delay_us(1);
 	/*potwierdzenie wyslania danych (opadajacym zboczem EN)*/
 	E = 0;
@@ -34,10 +34,10 @@ void Wyslij_do_LCD(unsigned char bajt)
 	__delay_us(1);
     E = 1;
   	/*wyslanie 4 najmlodszych bitow danych*/	
-	if(bajt & 0x08)	DB7	= 1; else DB7 = 0;
-	if(bajt & 0x04)	DB6	= 1; else DB6 = 0;
-	if(bajt & 0x02)	DB5	= 1; else DB5 = 0;
-	if(bajt & 0x01)	DB4	= 1; else DB4 = 0;
+	if(bajt & 0x08)	DB7 = 1; else DB7 = 0;
+	if(bajt & 0x04)	DB6 = 1; else DB6 = 0;
+	if(bajt & 0x02)	DB5 = 1; else DB5 = 0;
+	if(bajt & 0x01)	DB4 = 1; else DB4 = 0;
 	__delay_us(1);
 	/*potwierdz wysylke danych opadajacym zboczem EN*/
 	E = 0;
@@ -51,8 +51,8 @@ void WlaczLCD()
 {
 	/*ustawienie kierunku wyjsciowego linii podlaczonych do LCD*/
 	TRIS_RESET = 0 ;
-    TRIS_RW = 0 ;
-    TRIS_RS = 0;
+    	TRIS_RW = 0 ;
+    	TRIS_RS = 0;
 	TRIS_E = 0;
 	TRIS_DB7 = 0;
 	TRIS_DB6 = 0;
@@ -61,8 +61,8 @@ void WlaczLCD()
 
 	/*zerowanie linii*/
 	RESET = 1 ; /* 0 - Stan aktywny*/
-    RW = 0 ;
-    RS = 0; /* 0 - wskazuje na rejestr rozkazow / 1 - wskazuje na rejestr danych*/
+    	RW = 0 ;
+    	RS = 0; /* 0 - wskazuje na rejestr rozkazow / 1 - wskazuje na rejestr danych*/
 	E = 0;
 	DB7 = 0;
 	DB6 = 0;
@@ -93,7 +93,7 @@ void WlaczLCD()
   Wyslij_do_LCD(0x28);
   Wyslij_do_LCD(0x0F); /*Display on, cursor on, blink on*/
   CzyscLCD();
-RS = 1 ; /*przelacz na rejestr danych*/  
+  RS = 1 ; /*przelacz na rejestr danych*/  
         
  /*Koniec inicjalizacji i ustawien wyswietlacza DOGM204*/      
 }
@@ -147,7 +147,7 @@ void CzyscLCD()
 } 
 
 void WpiszSwojeZnaki(void) {
-    /*definicja wlasnych znaków maks 8 szt*/
+    /*definicja wlasnych znakÃ³w maks 8 szt*/
     char znak1[]= {0,0,14,17,31,16,14,2}; /* definicja literki e z ogonkiem */
     int i; 
     /* adresy poczatku definicji znaku to wielokrotnosc osmiu DEC(0,8,16,24,32,40,48,56)
@@ -155,7 +155,7 @@ void WpiszSwojeZnaki(void) {
      * to zawsze  01 (01AAAAAA-gdzie A adres).Uwzgledniajac wartosc calego bajtu
      * adresy poczatku beda wygladal tak HEX(0x40,0x48,0x50,0x58,0x60,0x68,0x70,0x78)
      * Aby wpisac do pamieci wyswietlacza zdefiniowany znak nalezy najpierw wyslac 
-     * do rejestru rozkazów (RS na 0) adres poczatku definicji znaku 
+     * do rejestru rozkazÃ³w (RS na 0) adres poczatku definicji znaku 
      * a w drugim kroku przesylamy dane (RS=1) 8 x bajt (tablica) definjujace obraz znaku*/
     
     RS = 0 ;/*stan niski na linii RS, wybieramy rejestr instrukcji*/
